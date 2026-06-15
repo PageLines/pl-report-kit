@@ -1,0 +1,21 @@
+{
+  "name": "pl-report-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "dev:cloudflare": "npm run build && wrangler pages dev .vitepress/dist",
+    "deploy": "npm run build && wrangler pages deploy .vitepress/dist --project-name pl-report-kit",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run test && npm run build"
+  },
+  "devDependencies": {
+    "mermaid": "^11.12.2",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17",
+    "wrangler": "^4.0.0"
+  }
+}

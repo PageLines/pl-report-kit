@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "pl-report-kit",
+  "pages_build_output_dir": ".vitepress/dist",
+  "compatibility_date": "2026-06-15",
+  "vars": {
+    "REPORT_REALM": "PL Report Kit"
+  }
+}

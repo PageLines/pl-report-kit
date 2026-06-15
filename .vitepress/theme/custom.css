@@ -1,0 +1,22 @@
+:root {
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #2563eb;
+  --vp-c-brand-3: #1d4ed8;
+}
+
+.dark {
+  --vp-c-brand-1: #60a5fa;
+  --vp-c-brand-2: #3b82f6;
+  --vp-c-brand-3: #2563eb;
+}
+
+.vp-doc blockquote {
+  border-left: 3px solid var(--vp-c-brand-1);
+  padding-left: 1.2em;
+  font-style: normal;
+}
+
+.vp-doc table {
+  font-size: 0.9em;
+}
