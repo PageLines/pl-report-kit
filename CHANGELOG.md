@@ -8,6 +8,7 @@ All notable changes to this report should be documented here.
 
 ### Added
 
+- Added the PageLines logo asset and refreshed `README.md` with clearer background, positioning, PageLines fit, natural-language editing examples, workflow, setup, and deployment guidance.
 - Added `report-kit-overview.md` with report-kit strategy, PageLines platform fit, natural-language editing workflow, writing principles, organization rules, media guidance, charting principles, gotchas, and definition of done.
 - Linked the overview from `README.md`, `AGENTS.md`, `CLAUDE.md`, `overview.md`, and VitePress navigation.
 - Initial PL Report Kit structure.
