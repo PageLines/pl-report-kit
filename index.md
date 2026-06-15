@@ -1,89 +1,117 @@
-# Client Ops Automation Brief
+# Better Reports Brief
 
-**Example report:** Harbor Studio<br>
-**Audience:** Owner + ops lead<br>
-**Status:** Demo content to replace<br>
+**Example report:** PL Report Kit<br>
+**Audience:** Operators, consultants, researchers, and PageLines agents<br>
+**Status:** Demo content with illustrative data<br>
 **Updated:** June 15, 2026
 
 ---
 
 ## Executive Summary
 
-Harbor Studio should start with **client follow-up automation**, not a broad "AI transformation" project. The workflow is frequent, source material is clean, and human approval keeps client trust intact.
+PL Report Kit is strongest when a report needs to be **credible, updateable, and easy to publish**. It is not trying to replace every document, slide deck, dashboard, or CMS. It gives serious reports a source-backed workspace that AI agents can edit safely.
 
-The first release should turn call transcripts, Slack notes, and account context into draft follow-ups within 24 hours. PageLines handles the report updates the same way: source material goes in, the agent extracts evidence, the owner reviews the diff, and the report goes live after approval.
+The practical win is simple: raw material goes into `records/`, claims move through `reference/`, the polished report stays in `index.md`, and PageLines agents can update the whole system from natural-language requests.
+
+> [!IMPORTANT]
+> This demo uses synthetic data to show the format. Replace the examples with source-backed numbers before using the report for a real decision.
 
 ---
 
 ## Decision Snapshot
 
-| Question | Answer | Evidence |
+| Question | Answer | Why It Matters |
 |---|---|---|
-| Best first workflow | Client follow-up drafts | High volume, low-risk approval loop |
-| Deployment model | Human-in-the-loop | Client-facing sends require approval |
-| First success metric | Follow-up sent within 24 hours | Current median is 46 hours |
-| First release size | 30-day pilot | Enough volume without process sprawl |
+| Best first use | Strategic and research reports | They need narrative, sources, visuals, and updates |
+| Primary buyer pain | Reports go stale after the first draft | Agents can maintain the actual report files |
+| Best PageLines fit | Non-technical users editing through natural language | The agent handles Markdown, Git, checks, and deploys |
+| Default deploy | Public demo or private Cloudflare Pages site | Low setup cost with optional password protection |
 
 ---
 
-## Current Signals
+## Approach Comparison
+
+| Approach | AI Editability | Evidence Trail | Publishing | Best For |
+|---|---:|---:|---:|---|
+| Google Docs | 2 | 2 | 2 | Collaborative prose |
+| PDF | 1 | 2 | 1 | Final static delivery |
+| Slide deck | 2 | 1 | 2 | Live presentations |
+| Notion page | 3 | 2 | 3 | Lightweight team notes |
+| BI dashboard | 2 | 4 | 3 | Live metrics |
+| Custom site | 3 | 3 | 4 | Polished web publishing |
+| PL Report Kit | 5 | 5 | 5 | Living reports with source discipline |
 
 <ReportChart
   type="bar"
-  title="Follow-up delay by source"
-  description="Demo values show where delayed client communication accumulates."
-  series-label="Median delay"
-  unit="hours"
+  title="Illustrative report workflow score"
+  description="Synthetic score from 1-5 across AI editability, evidence traceability, publishing speed, reader clarity, and maintenance cost."
+  series-label="Composite score"
+  unit="pts"
   :horizontal="true"
-  :labels="['Client calls', 'Slack asks', 'Email threads', 'Proposal notes']"
-  :values="[46, 31, 22, 55]"
+  :labels="['PL Report Kit', 'Custom site', 'BI dashboard', 'Notion page', 'Google Docs', 'Slide deck', 'PDF']"
+  :values="[24, 17, 16, 15, 12, 11, 8]"
 />
 
-| Signal | Finding | Why It Matters |
-|---|---:|---|
-| Client calls per month | 84 | Enough repetition for a measurable pilot |
-| Follow-ups later than 24h | 57% | Clear service-quality gap |
-| Reusable response patterns | 6 | Good fit for agent-drafted templates |
-| Required owner approvals | 100% | Automation can assist without auto-sending |
-
-> [!IMPORTANT]
-> These numbers are demo data. Replace them with source-backed values from `records/` before using the report for a real decision.
+The chart is intentionally a demo device. The point is not that the scores are universal. The point is that the report can combine narrative, a precise comparison table, a chart, and a source note in one maintainable artifact.
 
 ---
 
-## Recommended Pilot
+## Sales From Better Reports
+
+Better reports sell because they reduce uncertainty. A prospect, client, or internal sponsor can see the answer, inspect the reasoning, and trust that the report can stay current.
+
+| Sales Moment | Weak Report Behavior | Better Report Behavior |
+|---|---|---|
+| First impression | Static PDF or long doc | Clear web report with answer above the fold |
+| Trust check | "Where did this come from?" | Evidence matrix and source trail |
+| Follow-up | Manual rewrite | Agent updates sources, report, and changelog |
+| Handoff | Context lost in chat | Repo keeps instructions, sources, and decisions |
+| Expansion | One-off deliverable | Reusable report system for the next client |
+
+Illustrative impact model:
+
+$$
+report\ leverage = clarity \times trust \times updateability
+$$
+
+If any one part is weak, the report becomes shelfware.
+
+---
+
+## How PageLines Changes The Workflow
 
 ```mermaid
 flowchart LR
-  A[Transcript] --> B[Evidence notes]
-  B --> C[Draft follow-up]
-  C --> D[Owner review]
-  D --> E[Send]
-  D --> F[Save preference]
+  A[Messy source material] --> B[records/]
+  B --> C[PageLines agent]
+  C --> D[Evidence matrix]
+  D --> E[Reader-facing report]
+  E --> F[Human review]
+  F --> G[Cloudflare Pages deploy]
 ```
 
-| Phase | Output | Exit Criteria |
-|---|---|---|
-| Source cleanup | 50 recent calls tagged by client and outcome | Agent can find the right context |
-| Draft pilot | Follow-up drafts for 10 active clients | Owner edits less than 30% of draft text |
-| Preference capture | Saved tone, next-step, and escalation rules | Agent names what it learned |
-| Live rollout | Drafts generated after each client call | Median follow-up time under 24h |
+The user does not need to understand the repo internals. They can ask:
+
+> Add the new interview, update the comparison table, make the recommendation sharper, show me the diff, and publish after I approve.
+
+The agent reads `AGENTS.md`, follows `docs/formatting.md`, updates the evidence trail, runs checks, and prepares the deploy.
 
 ---
 
-## Recommendation
+## Recommended Demo Story
 
-Start with a narrow PageLines standing order:
+Use this report as the canonical demo for PL Report Kit:
 
-> After every client call transcript lands in `records/`, extract commitments, draft the follow-up, update the evidence matrix, and ask the owner before sending or publishing.
+| Section | Job |
+|---|---|
+| Executive summary | Show the point immediately |
+| Approach comparison | Make alternatives easy to scan |
+| Chart | Demonstrate visual support without a dashboard |
+| PageLines workflow | Explain natural-language editing |
+| Publishing shape | Show public/private deployment paths |
+| Source trail | Teach where research and evidence belong |
 
-This is the right first slice because it creates personal value, shows visible adaptation, and gives teammates a concrete reason to trust the agent.
-
-The operating gap is intentionally simple:
-
-$$
-target\ gap = current\ median - goal = 46 - 24 = 22\ hours
-$$
+The demo should feel like a working report, not a landing page pretending to be one.
 
 ---
 
@@ -91,41 +119,42 @@ $$
 
 | Risk | Control |
 |---|---|
-| Draft promises work the team cannot do | Require owner approval before send |
-| Transcript misses a key commitment | Mark uncertain transcript sections in the evidence table |
-| Client tone feels generic | Save approved edits as style preferences |
-| Report drifts from source material | Keep every claim tied to `reference/evidence-matrix.md` |
+| Demo data feels fake | Label it clearly and keep it useful |
+| Report becomes sales copy | Keep the format analytical and source-oriented |
+| Agents overuse charts | Require `docs/formatting.md` and nearby source context |
+| Users publish private material | Use `REPORT_PASSWORD` and human approval |
+| Custom domain setup stalls | Keep the `*.pages.dev` URL live while DNS validates |
 
 ---
 
 ## Open Questions
 
-- Which transcript source should be treated as authoritative?
-- Which clients should be excluded from the pilot?
-- What commitments require owner approval versus team approval?
-- Should the report be public, private behind `REPORT_PASSWORD`, or client-specific?
+- Should the default demo stay synthetic, or include one real public PageLines case study later?
+- Should `report-kit-demo.pagelines.com` remain the canonical demo URL?
+- Should PageLines agents offer a "make this report sharper" standing order by default?
+- Should the starter include optional example CSV files for richer chart demos?
 
 ---
 
 ## Publishing Shape
 
 :::tabs key:publishing
-== Public
-Use for demos, public research, and non-sensitive strategy notes. Keep source files sanitized and deploy without `REPORT_PASSWORD`.
+== Public Demo
+Use for the canonical PL Report Kit example. Keep data synthetic or public and deploy without `REPORT_PASSWORD`.
 
-== Private
-Use for client work, internal decisions, and source-backed reports that mention private facts. Set `REPORT_PASSWORD` before deploy.
+== Private Report
+Use for client work, internal decisions, diligence, and research with sensitive source material. Set `REPORT_PASSWORD` before deploy.
 :::
 
 ::: code-group
 
 ```bash [Deploy]
-npm run deploy -- --project harbor-client-ops
+npm run deploy -- --project pl-report-kit-demo
 ```
 
 ```txt [Private]
 REPORT_PASSWORD=use-a-strong-password
-REPORT_REALM="Harbor Studio Brief"
+REPORT_REALM="Better Reports Brief"
 ```
 
 :::
@@ -134,11 +163,12 @@ REPORT_REALM="Harbor Studio Brief"
 
 ## Source Trail
 
-This is demo content. Replace it with real source material:
+This is demo content. A real report should replace these rows with actual source files:
 
 | Source Type | Put It In | Agent Output |
 |---|---|---|
-| Call transcript | `records/transcript-YYYY-MM-DD-client.md` | Commitments and next steps |
-| Support export | `records/support-export-YYYY-MM-DD.csv` | Trend table and chart |
-| Strategy notes | `records/strategy-notes.md` | Recommendation and risks |
+| User interviews | `records/interview-YYYY-MM-DD-topic.md` | Jobs, objections, proof points |
+| Research notes | `records/research-notes-YYYY-MM-DD.md` | Claims and implications |
+| Comparison data | `records/comparison-data.csv` | Tables and charts |
 | Evidence table | `reference/evidence-matrix.md` | Claim-to-source map |
+| Synthesis | `reference/research-notes.md` | Patterns, recommendations, open questions |
