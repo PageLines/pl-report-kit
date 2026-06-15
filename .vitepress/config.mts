@@ -71,7 +71,7 @@ export default withMermaid(
       plugins: [
         groupIconVitePlugin(),
         llmstxt({
-          ignore: ['docs/superpowers/**'],
+          ignore: ['README.md', 'docs/superpowers/**'],
           llmsFile: {
             indexTOC: 'only-llms',
           },
