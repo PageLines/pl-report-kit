@@ -14,6 +14,8 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 - Start local docs server: `npm run dev`
 - Build static site: `npm run build`
 - Preview built site: `npm run preview`
+- Create and deploy Cloudflare Pages project: `npm run setup:cloudflare -- --project <handle>`
+- Deploy existing Cloudflare Pages project: `npm run deploy -- --project <handle>`
 - Test Cloudflare middleware helpers: `npm test`
 - Run full check: `npm run check`
 
@@ -56,6 +58,8 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 
 - Static build: `npm run build`
 - Cloudflare Pages output directory: `.vitepress/dist`
+- First deploy: `npm run setup:cloudflare -- --project <handle>`
+- Later deploys: `npm run deploy -- --project <handle>`
 - Optional Basic Auth: set `REPORT_PASSWORD` in Cloudflare Pages.
 - Optional login prompt label: set `REPORT_REALM`.
 

@@ -19,7 +19,7 @@ The docs are part of the product. They are not side notes. They tell agents what
 | Source model | Raw material in `records/`; synthesis in `reference/`; polished report in `index.md`. |
 | AI entrypoint | `AGENTS.md` tells agents how to work safely and consistently. |
 | Trust model | Every major claim maps to a source or labeled inference. |
-| Deployment model | Static VitePress site, Cloudflare Pages, optional Basic Auth. |
+| Deployment model | Static report site, Cloudflare Pages, optional Basic Auth. |
 
 ---
 
@@ -371,7 +371,7 @@ The kit stays small on purpose.
 |---|---|
 | Markdown first | Easy for humans, Git, and AI agents. |
 | Static site output | Cheap, fast, portable, easy to deploy. |
-| VitePress | Strong Markdown docs, local search, Mermaid support, simple build. |
+| Docs engine | Strong Markdown docs, local search, Mermaid support, simple build. |
 | Cloudflare Pages | Low-friction hosting and optional edge auth. |
 | Optional auth | Public reports work with no setup; private reports set `REPORT_PASSWORD`. |
 | No database by default | Source control is enough for most reports. |

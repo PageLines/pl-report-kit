@@ -9,20 +9,76 @@
 </p>
 
 <p align="center">
-  Markdown reports · source-backed analysis · VitePress publishing · Cloudflare Pages deploys
+  Source-backed reports · natural-language editing · one-command publishing
 </p>
 
 ---
 
-PL Report Kit is an AI-ready framework for building and maintaining strategic reports, research dossiers, client briefs, due-diligence notes, and document-backed analysis sites.
+PL Report Kit is a framework for building and maintaining strategic reports, research dossiers, client briefs, due-diligence notes, and document-backed analysis sites.
 
-The core idea: keep the report in a simple, structured repository so a PageLines agent can safely edit it. Non-technical users can ask for updates in plain language, review the diff, and publish without touching Git, Markdown, VitePress, or deployment settings.
+The point is not the docs engine. The point is that a report lives in a simple, structured workspace that a PageLines agent can safely edit. A non-technical user can ask for updates in plain language, review what changed, and publish without touching Git, Markdown, build tools, or hosting settings.
 
-> "Add the new client interview, update the risks section, make the recommendation sharper, show me what changed, and deploy it after I approve."
+> "Add the new client interview, update the risks section, make the recommendation sharper, show me what changed, and put it live after I approve."
+
+## 1, 2, 3: Live On The Internet
+
+### 1. Make A Report
+
+Use this repo as a template or ask a PageLines agent to create a new report from it.
+
+```bash
+npm install
+npm run dev
+```
+
+Put source material in `records/` and edit the main report in `index.md`.
+
+### 2. Tell PageLines What To Change
+
+Ask in normal language:
+
+```text
+Read AGENTS.md first.
+Add the transcript in records/.
+Update the evidence matrix, rewrite the executive summary, and show me the diff.
+```
+
+The agent follows the repo rules, updates the right files, runs checks, and asks before publishing.
+
+### 3. Put It Live
+
+For the easiest Cloudflare Pages deploy, give the agent:
+
+| Detail | Example | Why It Is Needed |
+|---|---|---|
+| Desired handle | `acme-strategy-report` | Creates `https://acme-strategy-report.pages.dev` |
+| Cloudflare access | `npx wrangler login` or `CLOUDFLARE_API_TOKEN` | Lets the agent create and deploy the Pages project |
+| Account ID | `CLOUDFLARE_ACCOUNT_ID` | Needed when the token can access multiple Cloudflare accounts |
+| Optional password | `REPORT_PASSWORD` | Protects private reports with Basic Auth |
+
+Then run:
+
+```bash
+npm run setup:cloudflare -- --project acme-strategy-report
+```
+
+For a private report:
+
+```bash
+npm run setup:cloudflare -- --project acme-strategy-report --password "use-a-strong-password"
+```
+
+After the first setup, publish updates with:
+
+```bash
+npm run deploy -- --project acme-strategy-report
+```
+
+The deploy helper creates the Pages project if needed, sets optional secrets, builds the report, deploys it, and prints the live `*.pages.dev` URL.
 
 ## Why This Exists
 
-Important reports rarely start as clean documents. They start as transcripts, PDFs, spreadsheets, notes, links, screenshots, and half-finished summaries. A normal doc editor helps with prose, but it does not preserve the evidence trail or give an AI agent a reliable way to update the work later.
+Important reports rarely start as clean documents. They start as transcripts, PDFs, spreadsheets, notes, links, screenshots, and half-finished summaries. A normal document editor helps with prose, but it does not preserve the evidence trail or give an AI agent a reliable way to update the work later.
 
 PL Report Kit gives every report a durable shape:
 
@@ -68,7 +124,7 @@ flowchart LR
   C --> D[reference/]
   D --> E[index.md]
   E --> F[Review diff]
-  F --> G[npm run check]
+  F --> G[Check]
   G --> H[Deploy]
 ```
 
@@ -80,40 +136,24 @@ The workflow is intentionally boring:
 4. The agent updates synthesis in `reference/research-notes.md`.
 5. The agent revises the reader-facing report in `index.md`.
 6. You review the diff.
-7. The agent runs `npm run check`.
+7. The agent runs checks.
 8. You approve deploy.
 
-## Quick Start
+## What Users Need To Configure
 
-```bash
-npm install
-npm run dev
-```
+Most reports need only a title, a handle, and source files.
 
-Then edit:
+| Need | Where It Lives | Can The Agent Handle It? |
+|---|---|---|
+| Report title and description | `.vitepress/config.mts`, `index.md` | Yes |
+| Source documents | `records/` | Yes, if files are provided |
+| Report structure | `index.md`, `reference/` | Yes |
+| Pages handle | Cloudflare Pages project name | Yes, if user chooses a handle |
+| Public/private choice | `REPORT_PASSWORD` | Yes, if user provides a password |
+| Custom domain | Cloudflare dashboard or API | Usually, with Cloudflare account access |
+| Ongoing updates | Report files + deploy command | Yes |
 
-- `index.md` for the main report
-- `overview.md` for the file map
-- `records/` for source documents
-- `reference/` for synthesized notes and evidence
-- `AGENTS.md` for AI agent instructions
-
-## Cloudflare Pages
-
-Recommended settings:
-
-| Setting | Value |
-|---|---|
-| Build command | `npm run build` |
-| Output directory | `.vitepress/dist` |
-
-Direct deploy:
-
-```bash
-npm run deploy
-```
-
-Reports deploy publicly by default with `noindex` headers and robots rules. To protect a private report, set `REPORT_PASSWORD` in Cloudflare Pages environment variables. The middleware turns Basic Auth on only when that variable is present.
+The one thing the user must provide is account access. The cleanest path is `npx wrangler login` on their machine. For agent-run automation, use a Cloudflare API token with Pages edit access and set `CLOUDFLARE_ACCOUNT_ID` when needed.
 
 ## Read Next
 

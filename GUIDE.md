@@ -104,6 +104,12 @@ Cloudflare Pages settings:
 | Build command | `npm run build` |
 | Output directory | `.vitepress/dist` |
 
+Fast deploy:
+
+```bash
+npm run setup:cloudflare -- --project your-report-handle
+```
+
 Optional environment variables:
 
 | Variable | Purpose |

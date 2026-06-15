@@ -8,7 +8,8 @@
     "build": "vitepress build",
     "preview": "vitepress preview",
     "dev:cloudflare": "npm run build && wrangler pages dev .vitepress/dist",
-    "deploy": "npm run build && wrangler pages deploy .vitepress/dist --project-name pl-report-kit",
+    "setup:cloudflare": "node scripts/cloudflare-pages.mjs setup",
+    "deploy": "node scripts/cloudflare-pages.mjs deploy",
     "test": "node --test tests/*.test.mjs",
     "check": "npm run test && npm run build"
   },
