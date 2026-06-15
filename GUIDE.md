@@ -16,6 +16,7 @@ Use this guide to create reports that are concise, sourced, and easy for AI agen
 | `CHANGELOG.md` | Change history |
 | `AGENTS.md` | Agent operating instructions |
 | `docs/ai-workflow.md` | Processing workflow and reusable prompt |
+| `docs/formatting.md` | Visual formatting rules and examples |
 
 ---
 
@@ -95,7 +96,26 @@ When new source material is added:
 
 ---
 
-## 6. Deployment
+## 6. Visual Formatting
+
+Use visuals to reduce reader effort, not to decorate the report.
+
+| Need | Default Format |
+|---|---|
+| Exact values or evidence | Markdown table |
+| Process or dependency | Mermaid |
+| Trend or comparison | `ReportChart` |
+| Formula or scoring logic | MathJax |
+| Command or config | Fenced code block |
+| Alternative commands/configs | Code group |
+| Public/private variants | Tabs |
+| Assumption or gotcha | Callout |
+
+See [Visual Formatting Guide](docs/formatting.md) before adding charts, diagrams, code samples, math, tabs, or media.
+
+---
+
+## 7. Deployment
 
 Cloudflare Pages settings:
 
@@ -121,10 +141,11 @@ No password is required for public reports. If `REPORT_PASSWORD` is set, the who
 
 ---
 
-## 7. Quality Checklist
+## 8. Quality Checklist
 
 - [ ] Main claim appears in the first section.
 - [ ] Every major claim maps to a source or labeled inference.
+- [ ] Visuals follow `docs/formatting.md`.
 - [ ] Open questions are explicit.
 - [ ] Dates are exact where timing matters.
 - [ ] `overview.md` reflects current files.

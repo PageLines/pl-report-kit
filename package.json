@@ -14,9 +14,15 @@
     "check": "npm run test && npm run build"
   },
   "devDependencies": {
+    "chart.js": "^4.5.1",
+    "debug": "^4.4.3",
+    "markdown-it-mathjax3": "^4.3.2",
     "mermaid": "^11.12.2",
     "vitepress": "^1.6.4",
+    "vitepress-plugin-group-icons": "^1.7.5",
+    "vitepress-plugin-llmstxt": "^0.5.1",
     "vitepress-plugin-mermaid": "^2.0.17",
+    "vitepress-plugin-tabs": "^0.9.0",
     "wrangler": "^4.0.0"
   }
 }

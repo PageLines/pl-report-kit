@@ -2,7 +2,7 @@
 
 PL Report Kit is a lightweight system for turning source material into clear, evidence-backed reports that humans can read and AI agents can maintain.
 
-The key idea is simple: PageLines gives adaptive agents access to a structured report repo, so non-technical users can update serious reports through natural language without learning Git, Markdown, VitePress, or deployment.
+The key idea is simple: PageLines gives adaptive agents access to a structured report repo, so non-technical users can update serious reports through natural language without learning Git, Markdown, docs tooling, or deployment.
 
 The docs are part of the product. They are not side notes. They tell agents what matters, where evidence lives, how to write, how to verify changes, and when to ask for approval.
 
@@ -235,7 +235,7 @@ flowchart LR
 Agent workflow:
 
 1. Read `AGENTS.md`.
-2. Read `report-kit-overview.md`, `overview.md`, `GUIDE.md`, and `index.md`.
+2. Read `report-kit-overview.md`, `overview.md`, `GUIDE.md`, `docs/formatting.md`, and `index.md`.
 3. Inventory `records/`.
 4. Extract atomic claims into `reference/evidence-matrix.md`.
 5. Write synthesis in `reference/research-notes.md`.
@@ -325,9 +325,11 @@ Use charts only when they make a comparison faster than prose or a table.
 |---|---|---|
 | Markdown tables | Comparisons, evidence matrices, risks, timelines | Huge datasets |
 | Mermaid | Flows, timelines, system maps, simple journeys | Precise quantitative charts |
-| Chart.js | Trends, bars, lines, distributions | Decorative dashboards |
+| `ReportChart` / Chart.js | Trends, bars, lines, simple composition charts | Decorative dashboards |
 | CSV or JSON files | Reusable structured data | One-off numbers better shown in a table |
 | D3 or custom embeds | Custom analysis views | Static reports that do not need interaction |
+
+Use [Visual Formatting Guide](docs/formatting.md) as the source of truth for chart, diagram, code, math, tab, callout, media, and transcript formatting.
 
 Chart rules:
 

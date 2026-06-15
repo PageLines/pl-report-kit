@@ -87,9 +87,12 @@ PL Report Kit gives every report a durable shape:
 - `index.md` for the polished reader-facing report
 - `overview.md` for the file map
 - `AGENTS.md` for AI operating instructions
+- `docs/formatting.md` for charts, diagrams, code, math, tabs, and media rules
 - `CHANGELOG.md` for what changed and why
 
 That structure is what makes natural-language editing reliable.
+
+Built-in formatting support includes Markdown tables, Mermaid diagrams, Chart.js-powered `ReportChart` components, syntax-highlighted code blocks, code groups, MathJax equations, tabs, callouts, local search, and generated LLM-friendly output.
 
 ## PageLines Fit
 
@@ -159,6 +162,7 @@ The one thing the user must provide is account access. The cleanest path is `npx
 
 - [Report Kit Overview](report-kit-overview.md) - strategy, PageLines fit, principles, gotchas, charting, media, and definition of done
 - [AI Workflow](docs/ai-workflow.md) - reusable prompt and processing checklist
+- [Visual Formatting Guide](docs/formatting.md) - how agents should choose tables, charts, diagrams, code, math, tabs, callouts, and media
 - [Writing Guide](GUIDE.md) - report structure, source standards, and quality checklist
 - [AGENTS.md](AGENTS.md) - instructions AI agents should read before editing
 

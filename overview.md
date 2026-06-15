@@ -18,7 +18,8 @@ pl-report-kit/
 ├── news.md                # Running update log
 ├── CHANGELOG.md           # Change history
 ├── docs/
-│   └── ai-workflow.md     # Prompt and processing checklist
+│   ├── ai-workflow.md     # Prompt and processing checklist
+│   └── formatting.md      # Visual formatting rules and examples
 ├── reference/
 │   ├── evidence-matrix.md # Extracted claims and source links
 │   ├── research-notes.md  # Synthesized notes
@@ -38,6 +39,7 @@ pl-report-kit/
 | [AGENTS.md](AGENTS.md) | Agent instructions and workflow | AI tools |
 | [GUIDE.md](GUIDE.md) | Writing and source standards | Editors |
 | [docs/ai-workflow.md](docs/ai-workflow.md) | Processing checklist and reusable prompt | AI tools and editors |
+| [docs/formatting.md](docs/formatting.md) | Visual formatting rules for charts, diagrams, code, math, tabs, callouts, and media | AI tools and editors |
 | [reference/evidence-matrix.md](reference/evidence-matrix.md) | Claim-to-source table | Reviewers |
 | [records/](records/) | Source document workspace | Editors and agents |
 
@@ -49,6 +51,7 @@ pl-report-kit/
 2. Read `report-kit-overview.md`.
 3. Read this file.
 4. Read `index.md`.
-5. Check `CHANGELOG.md`.
-6. Inspect `records/` and `reference/` for the task.
-7. Update `overview.md` and `CHANGELOG.md` after substantive changes.
+5. Read `docs/formatting.md` before adding visuals.
+6. Check `CHANGELOG.md`.
+7. Inspect `records/` and `reference/` for the task.
+8. Update `overview.md` and `CHANGELOG.md` after substantive changes.

@@ -26,8 +26,9 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 3. `overview.md` - file map and current report structure.
 4. `index.md` - main report.
 5. `GUIDE.md` - writing and source standards.
-6. `docs/ai-workflow.md` - processing workflow for new documents.
-7. Relevant source files under `records/` and synthesized files under `reference/`.
+6. `docs/formatting.md` - visual formatting rules for tables, charts, diagrams, code, math, tabs, and callouts.
+7. `docs/ai-workflow.md` - processing workflow for new documents.
+8. Relevant source files under `records/` and synthesized files under `reference/`.
 
 ## Source Boundaries
 
@@ -41,11 +42,22 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 
 - Lead with the conclusion, then show evidence.
 - Prefer tables for comparisons, timelines, evidence mapping, risks, and recommendations.
+- Use `docs/formatting.md` before adding charts, diagrams, code samples, math, tabs, or media.
 - Tie every major claim to a source, date, or explicitly labeled inference.
 - Separate facts, interpretation, recommendations, and open questions.
 - Use exact dates for time-sensitive claims.
 - Mark certainty: confirmed, likely, emerging, speculative, or unknown.
 - Cut filler. The report should read like a serious analyst wrote it.
+
+## Visual And Technical Formatting
+
+- Use Markdown tables for exact values, evidence trails, risks, decisions, and comparisons.
+- Use Mermaid for workflows, timelines, system maps, and relationship diagrams.
+- Use `ReportChart` for small, source-backed business charts where visual shape matters.
+- Use syntax-highlighted fenced code blocks for code, config, CLI commands, and data samples.
+- Use code groups for command/config alternatives.
+- Use MathJax only when an equation is clearer than prose.
+- Use tabs for variants such as public/private publishing; never hide the main recommendation behind a tab.
 
 ## Research Standards
 

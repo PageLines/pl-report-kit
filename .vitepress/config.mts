@@ -1,5 +1,8 @@
 import { defineConfig } from 'vitepress'
+import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-icons'
+import llmstxt from 'vitepress-plugin-llmstxt'
 import { withMermaid } from 'vitepress-plugin-mermaid'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
 
 export default withMermaid(
   defineConfig({
@@ -17,6 +20,7 @@ export default withMermaid(
         { text: 'Map', link: '/overview' },
         { text: 'Strategy', link: '/report-kit-overview' },
         { text: 'Guide', link: '/GUIDE' },
+        { text: 'Formatting', link: '/docs/formatting' },
       ],
       sidebar: [
         {
@@ -42,6 +46,7 @@ export default withMermaid(
           text: 'Agent Guides',
           items: [
             { text: 'AI Workflow', link: '/docs/ai-workflow' },
+            { text: 'Visual Formatting', link: '/docs/formatting' },
             { text: 'Writing Guide', link: '/GUIDE' },
             { text: 'AGENTS.md', link: '/AGENTS' },
           ],
@@ -50,6 +55,28 @@ export default withMermaid(
       search: {
         provider: 'local',
       },
+    },
+    markdown: {
+      lineNumbers: true,
+      math: true,
+      image: {
+        lazyLoading: true,
+      },
+      config(md) {
+        md.use(tabsMarkdownPlugin)
+        md.use(groupIconMdPlugin)
+      },
+    },
+    vite: {
+      plugins: [
+        groupIconVitePlugin(),
+        llmstxt({
+          ignore: ['docs/superpowers/**'],
+          llmsFile: {
+            indexTOC: 'only-llms',
+          },
+        }),
+      ],
     },
     mermaid: {},
   })

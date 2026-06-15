@@ -28,13 +28,16 @@ The first release should turn call transcripts, Slack notes, and account context
 
 ## Current Signals
 
-```mermaid
-xychart-beta
-  title "Follow-up delay by source"
-  x-axis ["Client calls", "Slack asks", "Email threads", "Proposal notes"]
-  y-axis "Median hours" 0 --> 60
-  bar [46, 31, 22, 55]
-```
+<ReportChart
+  type="bar"
+  title="Follow-up delay by source"
+  description="Demo values show where delayed client communication accumulates."
+  series-label="Median delay"
+  unit="hours"
+  :horizontal="true"
+  :labels="['Client calls', 'Slack asks', 'Email threads', 'Proposal notes']"
+  :values="[46, 31, 22, 55]"
+/>
 
 | Signal | Finding | Why It Matters |
 |---|---:|---|
@@ -42,6 +45,9 @@ xychart-beta
 | Follow-ups later than 24h | 57% | Clear service-quality gap |
 | Reusable response patterns | 6 | Good fit for agent-drafted templates |
 | Required owner approvals | 100% | Automation can assist without auto-sending |
+
+> [!IMPORTANT]
+> These numbers are demo data. Replace them with source-backed values from `records/` before using the report for a real decision.
 
 ---
 
@@ -73,6 +79,12 @@ Start with a narrow PageLines standing order:
 
 This is the right first slice because it creates personal value, shows visible adaptation, and gives teammates a concrete reason to trust the agent.
 
+The operating gap is intentionally simple:
+
+$$
+target\ gap = current\ median - goal = 46 - 24 = 22\ hours
+$$
+
 ---
 
 ## Risks And Controls
@@ -92,6 +104,31 @@ This is the right first slice because it creates personal value, shows visible a
 - Which clients should be excluded from the pilot?
 - What commitments require owner approval versus team approval?
 - Should the report be public, private behind `REPORT_PASSWORD`, or client-specific?
+
+---
+
+## Publishing Shape
+
+:::tabs key:publishing
+== Public
+Use for demos, public research, and non-sensitive strategy notes. Keep source files sanitized and deploy without `REPORT_PASSWORD`.
+
+== Private
+Use for client work, internal decisions, and source-backed reports that mention private facts. Set `REPORT_PASSWORD` before deploy.
+:::
+
+::: code-group
+
+```bash [Deploy]
+npm run deploy -- --project harbor-client-ops
+```
+
+```txt [Private]
+REPORT_PASSWORD=use-a-strong-password
+REPORT_REALM="Harbor Studio Brief"
+```
+
+:::
 
 ---
 

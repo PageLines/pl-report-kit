@@ -6,7 +6,7 @@ Use this workflow when turning source material into a strategic or research repo
 
 ## Processing Checklist
 
-1. Read `AGENTS.md`, `overview.md`, `GUIDE.md`, and `index.md`.
+1. Read `AGENTS.md`, `overview.md`, `GUIDE.md`, `docs/formatting.md`, and `index.md`.
 2. Inventory `records/` and list each source with date, type, author, and reliability.
 3. Extract atomic claims into `reference/evidence-matrix.md`.
 4. Group related findings in `reference/research-notes.md`.
@@ -20,7 +20,7 @@ Use this workflow when turning source material into a strategic or research repo
 ## Reusable Prompt
 
 ```text
-Read AGENTS.md first, then overview.md, GUIDE.md, index.md, and all relevant files in records/ and reference/.
+Read AGENTS.md first, then overview.md, GUIDE.md, docs/formatting.md, index.md, and all relevant files in records/ and reference/.
 
 Goal: turn the source material into a sharp, evidence-backed report for [AUDIENCE].
 
@@ -29,9 +29,10 @@ Process:
 2. Extract claims into reference/evidence-matrix.md with source, date, certainty, and implication.
 3. Summarize patterns in reference/research-notes.md.
 4. Draft or update index.md with executive summary, key findings, evidence, recommendations, risks, and open questions.
-5. Keep facts, interpretation, and recommendations separate.
-6. Update overview.md and CHANGELOG.md.
-7. Run npm run check and report the result.
+5. Use docs/formatting.md to choose tables, charts, diagrams, code blocks, math, tabs, callouts, and media.
+6. Keep facts, interpretation, and recommendations separate.
+7. Update overview.md and CHANGELOG.md.
+8. Run npm run check and report the result.
 
 Style:
 - Lead with the practical implication.
