@@ -8,6 +8,7 @@ All notable changes to this report should be documented here.
 
 ### Added
 
+- Replaced the default demo report with a concise client-ops automation brief that shows tables, Mermaid charts, a source trail, and PageLines-style human approval flow without bloating the sample.
 - Added `scripts/cloudflare-pages.mjs` plus `npm run setup:cloudflare` and dynamic `npm run deploy -- --project <handle>` commands to make Cloudflare Pages setup agent-friendly.
 - Reworked `README.md` around a mainstream 1-2-3 quickstart: make a report, tell PageLines what to change, put it live.
 - Added the PageLines logo asset and refreshed `README.md` with clearer background, positioning, PageLines fit, natural-language editing examples, workflow, setup, and deployment guidance.
