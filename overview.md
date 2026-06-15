@@ -9,6 +9,7 @@
 ```text
 pl-report-kit/
 ├── README.md              # Human quick start
+├── report-kit-overview.md # Strategy, principles, PageLines fit
 ├── AGENTS.md              # AI operating instructions; read first
 ├── CLAUDE.md              # Claude compatibility pointer
 ├── GUIDE.md               # Writing and source standards
@@ -33,6 +34,7 @@ pl-report-kit/
 | File | Purpose | Audience |
 |---|---|---|
 | [index.md](index.md) | Main report and example format | Readers |
+| [report-kit-overview.md](report-kit-overview.md) | Strategy, PageLines fit, AI workflow, charting/media guidance, gotchas | Product owners, editors, AI tools |
 | [AGENTS.md](AGENTS.md) | Agent instructions and workflow | AI tools |
 | [GUIDE.md](GUIDE.md) | Writing and source standards | Editors |
 | [docs/ai-workflow.md](docs/ai-workflow.md) | Processing checklist and reusable prompt | AI tools and editors |
@@ -44,8 +46,9 @@ pl-report-kit/
 ## AI Session Startup
 
 1. Read `AGENTS.md`.
-2. Read this file.
-3. Read `index.md`.
-4. Check `CHANGELOG.md`.
-5. Inspect `records/` and `reference/` for the task.
-6. Update `overview.md` and `CHANGELOG.md` after substantive changes.
+2. Read `report-kit-overview.md`.
+3. Read this file.
+4. Read `index.md`.
+5. Check `CHANGELOG.md`.
+6. Inspect `records/` and `reference/` for the task.
+7. Update `overview.md` and `CHANGELOG.md` after substantive changes.

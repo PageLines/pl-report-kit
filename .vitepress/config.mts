@@ -15,6 +15,7 @@ export default withMermaid(
       nav: [
         { text: 'Report', link: '/' },
         { text: 'Map', link: '/overview' },
+        { text: 'Strategy', link: '/report-kit-overview' },
         { text: 'Guide', link: '/GUIDE' },
       ],
       sidebar: [
@@ -22,6 +23,7 @@ export default withMermaid(
           text: 'Report',
           items: [
             { text: 'Executive Summary', link: '/' },
+            { text: 'Kit Strategy', link: '/report-kit-overview' },
             { text: 'File Map', link: '/overview' },
             { text: 'News Log', link: '/news' },
             { text: 'Changelog', link: '/CHANGELOG' },

@@ -20,11 +20,12 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 ## Required Reading Order
 
 1. `README.md` - project purpose and user-facing setup.
-2. `overview.md` - file map and current report structure.
-3. `index.md` - main report.
-4. `GUIDE.md` - writing and source standards.
-5. `docs/ai-workflow.md` - processing workflow for new documents.
-6. Relevant source files under `records/` and synthesized files under `reference/`.
+2. `report-kit-overview.md` - strategy, principles, PageLines fit, and report-kit operating model.
+3. `overview.md` - file map and current report structure.
+4. `index.md` - main report.
+5. `GUIDE.md` - writing and source standards.
+6. `docs/ai-workflow.md` - processing workflow for new documents.
+7. Relevant source files under `records/` and synthesized files under `reference/`.
 
 ## Source Boundaries
 

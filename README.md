@@ -4,6 +4,8 @@ AI-ready framework for building, reviewing, and deploying strategic reports, res
 
 The kit is intentionally simple: Markdown content, VitePress publishing, source documents in `records/`, synthesized analysis in `reference/`, and agent instructions in `AGENTS.md`.
 
+Read [report-kit-overview.md](report-kit-overview.md) for the strategy, principles, PageLines fit, AI workflow, charting guidance, media conventions, and quality bar behind the kit.
+
 ## Use It For
 
 - Strategic plans and market research reports
