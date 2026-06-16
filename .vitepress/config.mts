@@ -21,6 +21,7 @@ export default withMermaid(
         { text: 'Strategy', link: '/report-kit-overview' },
         { text: 'Guide', link: '/GUIDE' },
         { text: 'Formatting', link: '/docs/formatting' },
+        { text: 'Privacy', link: '/docs/secrets-and-privacy' },
       ],
       sidebar: [
         {
@@ -47,6 +48,7 @@ export default withMermaid(
           items: [
             { text: 'AI Workflow', link: '/docs/ai-workflow' },
             { text: 'Visual Formatting', link: '/docs/formatting' },
+            { text: 'Secrets & Privacy', link: '/docs/secrets-and-privacy' },
             { text: 'Writing Guide', link: '/GUIDE' },
             { text: 'AGENTS.md', link: '/AGENTS' },
           ],

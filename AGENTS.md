@@ -15,6 +15,7 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 - Build static site: `npm run build`
 - Preview built site: `npm run preview`
 - Create and deploy Cloudflare Pages project: `npm run setup:cloudflare -- --project <handle>`
+- Create private Cloudflare Pages project: `npm run setup:cloudflare -- --project <handle> --private`
 - Deploy existing Cloudflare Pages project: `npm run deploy -- --project <handle>`
 - Test Cloudflare middleware helpers: `npm test`
 - Run full check: `npm run check`
@@ -27,8 +28,9 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 4. `index.md` - main report.
 5. `GUIDE.md` - writing and source standards.
 6. `docs/formatting.md` - visual formatting rules for tables, charts, diagrams, code, math, tabs, and callouts.
-7. `docs/ai-workflow.md` - processing workflow for new documents.
-8. Relevant source files under `records/` and synthesized files under `reference/`.
+7. `docs/secrets-and-privacy.md` - environment variables, secrets, privacy modes, and publishing rules.
+8. `docs/ai-workflow.md` - processing workflow for new documents.
+9. Relevant source files under `records/` and synthesized files under `reference/`.
 
 ## Source Boundaries
 
@@ -66,13 +68,25 @@ This is a generic framework. Do not assume a specific domain. Adapt the report t
 - Do not overstate source quality. Label weak evidence clearly.
 - If sources disagree, state the disagreement and explain which source should carry more weight.
 
+## Secrets And Privacy
+
+- Never commit real `.env`, `.env.*`, `.dev.vars`, `.dev.vars.*`, API tokens, passwords, cookies, private keys, or service credentials.
+- Use `.env.example` and `.dev.vars.example` only for placeholders.
+- Public reports deploy without `REPORT_PASSWORD`.
+- Private reports use `REPORT_PASSWORD` as a Cloudflare Pages secret. Prefer `npm run setup:cloudflare -- --project <handle> --private`.
+- Sensitive reports should use a private GitHub repo, a custom domain, and Cloudflare Access.
+- Stop and ask before publishing medical, legal, financial, HR, regulated, or client-confidential material.
+- Do not print secret values in summaries, logs, docs, or changelog entries.
+- Read `docs/secrets-and-privacy.md` before changing deployment or auth behavior.
+
 ## Deployment
 
 - Static build: `npm run build`
 - Cloudflare Pages output directory: `.vitepress/dist`
 - First deploy: `npm run setup:cloudflare -- --project <handle>`
+- First private deploy: `npm run setup:cloudflare -- --project <handle> --private`
 - Later deploys: `npm run deploy -- --project <handle>`
-- Optional Basic Auth: set `REPORT_PASSWORD` in Cloudflare Pages.
+- Optional Basic Auth: set `REPORT_PASSWORD` as a Cloudflare Pages secret.
 - Optional login prompt label: set `REPORT_REALM`.
 
 The report is public by default so it can deploy with no manual environment setup. Add `REPORT_PASSWORD` for private reports.

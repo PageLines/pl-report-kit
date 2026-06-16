@@ -54,7 +54,7 @@ For the easiest Cloudflare Pages deploy, give the agent:
 | Desired handle | `acme-strategy-report` | Creates `https://acme-strategy-report.pages.dev` |
 | Cloudflare access | `npx wrangler login` or `CLOUDFLARE_API_TOKEN` | Lets the agent create and deploy the Pages project |
 | Account ID | `CLOUDFLARE_ACCOUNT_ID` | Needed when the token can access multiple Cloudflare accounts |
-| Optional password | `REPORT_PASSWORD` | Protects private reports with Basic Auth |
+| Privacy choice | public, private, or sensitive | Controls whether the report uses no auth, Basic Auth, or Cloudflare Access |
 
 Then run:
 
@@ -65,7 +65,7 @@ npm run setup:cloudflare -- --project acme-strategy-report
 For a private report:
 
 ```bash
-npm run setup:cloudflare -- --project acme-strategy-report --password "use-a-strong-password"
+npm run setup:cloudflare -- --project acme-strategy-report --private
 ```
 
 After the first setup, publish updates with:
@@ -74,7 +74,7 @@ After the first setup, publish updates with:
 npm run deploy -- --project acme-strategy-report
 ```
 
-The deploy helper creates the Pages project if needed, sets optional secrets, builds the report, deploys it, and prints the live `*.pages.dev` URL.
+The deploy helper creates the Pages project if needed, prompts securely for optional private-report secrets, builds the report, deploys it, and prints the live `*.pages.dev` URL.
 
 ## Why This Exists
 
@@ -93,6 +93,16 @@ PL Report Kit gives every report a durable shape:
 That structure is what makes natural-language editing reliable.
 
 Built-in formatting support includes Markdown tables, Mermaid diagrams, Chart.js-powered `ReportChart` components, syntax-highlighted code blocks, code groups, MathJax equations, tabs, callouts, local search, and generated LLM-friendly output.
+
+## Secrets And Privacy
+
+Public reports need no secrets.
+
+Private reports use a Cloudflare Pages secret named `REPORT_PASSWORD`. When it is set, the included Pages Function middleware protects the whole report at the Cloudflare edge with Basic Auth.
+
+Sensitive reports should use Cloudflare Access, a private GitHub repo, named users, and human approval before publishing. This is the recommended path for medical, legal, financial, HR, regulated, or client-confidential material.
+
+See [Secrets And Privacy](docs/secrets-and-privacy.md) for the full setup model, including `.env`, `.dev.vars`, Cloudflare Pages secrets, GitHub secrets, and PageLines agent rules.
 
 ## PageLines Fit
 
@@ -113,6 +123,8 @@ Those teams live in documents, meetings, email, and client updates. PL Report Ki
 - Strategic plans and market research reports
 - Competitive or technical due diligence
 - Client-facing research portals
+- Competitive research that combines public data with internal sales or customer notes
+- Medical or personal research summaries from records, labs, transcripts, and questions
 - Meeting transcript synthesis
 - Product discovery reports from interviews and tickets
 - Board or investor briefings
@@ -152,16 +164,17 @@ Most reports need only a title, a handle, and source files.
 | Source documents | `records/` | Yes, if files are provided |
 | Report structure | `index.md`, `reference/` | Yes |
 | Pages handle | Cloudflare Pages project name | Yes, if user chooses a handle |
-| Public/private choice | `REPORT_PASSWORD` | Yes, if user provides a password |
-| Custom domain | Cloudflare dashboard or API | Usually, with Cloudflare account access |
+| Public/private/sensitive choice | `REPORT_PASSWORD` or Cloudflare Access | Yes, with user approval |
+| Custom domain | Cloudflare dashboard/API and DNS zone access | Usually, when the domain is in the same Cloudflare account |
 | Ongoing updates | Report files + deploy command | Yes |
 
-The one thing the user must provide is account access. The cleanest path is `npx wrangler login` on their machine. For agent-run automation, use a Cloudflare API token with Pages edit access and set `CLOUDFLARE_ACCOUNT_ID` when needed.
+The one thing the user must provide is account access. The cleanest path is `npx wrangler login` on their machine. For agent-run automation, use a Cloudflare API token with Pages edit access and set `CLOUDFLARE_ACCOUNT_ID` when needed. Do not commit tokens, passwords, or private source material to the repo.
 
 ## Read Next
 
 - [Report Kit Overview](report-kit-overview.md) - strategy, PageLines fit, principles, gotchas, charting, media, and definition of done
 - [AI Workflow](docs/ai-workflow.md) - reusable prompt and processing checklist
+- [Secrets And Privacy](docs/secrets-and-privacy.md) - env vars, Cloudflare secrets, Basic Auth, Cloudflare Access, and sensitive-report rules
 - [Visual Formatting Guide](docs/formatting.md) - how agents should choose tables, charts, diagrams, code, math, tabs, callouts, and media
 - [Writing Guide](GUIDE.md) - report structure, source standards, and quality checklist
 - [AGENTS.md](AGENTS.md) - instructions AI agents should read before editing

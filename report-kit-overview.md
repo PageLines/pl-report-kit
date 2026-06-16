@@ -19,7 +19,7 @@ The docs are part of the product. They are not side notes. They tell agents what
 | Source model | Raw material in `records/`; synthesis in `reference/`; polished report in `index.md`. |
 | AI entrypoint | `AGENTS.md` tells agents how to work safely and consistently. |
 | Trust model | Every major claim maps to a source or labeled inference. |
-| Deployment model | Static report site, Cloudflare Pages, optional Basic Auth. |
+| Deployment model | Static report site, Cloudflare Pages, optional Basic Auth, Cloudflare Access for sensitive reports. |
 
 ---
 
@@ -103,8 +103,11 @@ PL Report Kit works best when the report needs both narrative and source discipl
 | Product discovery | Interviews, tickets, analytics | JTBD and roadmap report |
 | Technical research | Specs, docs, papers, experiment logs | Evidence-backed explainer |
 | Board or investor prep | Metrics, forecasts, narrative notes | Executive briefing |
+| Medical or personal research | Records, labs, visit notes, transcripts, questions | Timeline, source summary, question list |
 
 The kit is not a CRM, BI warehouse, or full CMS. It is a small, legible workspace for reports that benefit from AI-assisted synthesis.
+
+For medical, legal, financial, or similar high-stakes topics, the report should organize evidence and questions. It should not present itself as professional advice.
 
 ---
 
@@ -378,8 +381,31 @@ The kit stays small on purpose.
 | Optional auth | Public reports work with no setup; private reports set `REPORT_PASSWORD`. |
 | No database by default | Source control is enough for most reports. |
 | Checks before publish | Build and tests catch common mistakes. |
+| Secret handling | Secrets stay in Cloudflare, GitHub, PageLines, or local ignored files, never committed source. |
 
 Do not add infrastructure until the report needs it. A report kit should feel lighter than the material it organizes.
+
+---
+
+## Privacy And Secrets
+
+Reports fall into three publishing modes.
+
+| Mode | Use For | Control |
+|---|---|---|
+| Public | Demos and public research | No `REPORT_PASSWORD`; no private source material |
+| Private | Internal/client reports where a shared password is acceptable | Cloudflare Pages secret `REPORT_PASSWORD` |
+| Sensitive | Medical, legal, financial, HR, regulated, or high-trust client work | Private repo, custom domain, Cloudflare Access |
+
+PageLines agents can help create the repo, deploy the site, set Cloudflare Pages secrets, and prepare custom-domain or Access setup. The user still controls account authorization, who can read the report, and whether publishing is approved.
+
+Rules:
+
+- Never commit real secrets.
+- Use `.env.example` and `.dev.vars.example` for names and placeholders only.
+- Prefer `npm run setup:cloudflare -- --project <handle> --private` for private reports.
+- Prefer Cloudflare Access for sensitive reports.
+- Treat `noindex` as indexing guidance, not protection.
 
 ---
 
@@ -391,7 +417,8 @@ Do not add infrastructure until the report needs it. A report kit should feel li
 | Raw records get rewritten | Keep `records/` source-only and summarize elsewhere. |
 | Report becomes a junk drawer | Update `overview.md` and split long synthesis into `reference/`. |
 | Charts become decoration | Use charts only for comparisons that benefit from visual shape. |
-| Private material gets deployed | Use `REPORT_PASSWORD`, `noindex`, and explicit approval. |
+| Private material gets deployed | Classify public/private/sensitive before deploy and require approval. |
+| Shared password is too weak for the material | Use Cloudflare Access and a private repo. |
 | Readers miss what changed | Keep `CHANGELOG.md` and a dated status line in `index.md`. |
 | Agent edits the wrong file | Strengthen `AGENTS.md` and `overview.md`. |
 | The report tries to answer everything | Define the decision, audience, and walking skeleton first. |

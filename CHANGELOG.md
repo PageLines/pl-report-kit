@@ -4,11 +4,29 @@ All notable changes to this report should be documented here.
 
 ---
 
+## June 16, 2026
+
+### Added
+
+- Reworked the demo report as `Why Report Kit`, with clearer SPIN-style positioning, PageLines natural-language editing, use cases, synthetic visual examples, and public/private/sensitive publishing modes.
+- Added `docs/secrets-and-privacy.md` with environment variable guidance, Cloudflare Pages secrets, local `.dev.vars`, GitHub/Cloudflare token handling, Basic Auth, Cloudflare Access, and agent rules.
+- Added `.dev.vars.example` and expanded `.env.example` so humans and agents can see configurable names without committing real secrets.
+- Added request-level middleware tests and Cloudflare setup helper tests.
+
+### Changed
+
+- Updated `npm run setup:cloudflare` private-report setup to prefer `--private`, which lets Wrangler prompt securely for `REPORT_PASSWORD`.
+- Kept legacy `--password` support with a warning because command-line secrets can be stored in shell history.
+- Updated README, AGENTS, Claude, writing guide, AI workflow, file map, source-record rules, and site navigation to point to the secrets/privacy model.
+
+### Fixed
+
+- Fixed the Basic Auth middleware challenge path so configured private reports return a valid `WWW-Authenticate` header instead of throwing on missing auth.
+
 ## June 15, 2026
 
 ### Added
 
-- Reworked the default report into the self-referential Better Reports Brief, with synthetic comparison data, PageLines workflow positioning, and updated evidence/research notes.
 - Added report visual tooling: `ReportChart`, Chart.js defaults, math, tabs, code-group icons, LLM-friendly output, and `docs/formatting.md` agent guidance.
 - Replaced the default demo report with a concise client-ops automation brief that shows tables, Mermaid charts, a source trail, and PageLines-style human approval flow without bloating the sample.
 - Added `scripts/cloudflare-pages.mjs` plus `npm run setup:cloudflare` and dynamic `npm run deploy -- --project <handle>` commands to make Cloudflare Pages setup agent-friendly.

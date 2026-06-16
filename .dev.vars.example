@@ -1,0 +1,6 @@
+# Local Cloudflare Pages Functions secrets.
+# Use these names in .dev.vars for local auth testing.
+# Do not commit .dev.vars with real values.
+
+REPORT_PASSWORD="local-dev-password"
+REPORT_REALM="Private report"

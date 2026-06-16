@@ -4,6 +4,14 @@ Use this file for dated research sweeps, source additions, and meaningful report
 
 ---
 
+## June 16, 2026
+
+### Report Kit privacy and demo update
+
+- Reframed the demo as `Why Report Kit`.
+- Added public/private/sensitive publishing guidance.
+- Updated Cloudflare setup to prefer secure Pages secret prompts for private reports.
+
 ## June 15, 2026
 
 ### Initial example report

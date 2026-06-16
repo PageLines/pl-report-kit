@@ -17,6 +17,7 @@ Use this guide to create reports that are concise, sourced, and easy for AI agen
 | `AGENTS.md` | Agent operating instructions |
 | `docs/ai-workflow.md` | Processing workflow and reusable prompt |
 | `docs/formatting.md` | Visual formatting rules and examples |
+| `docs/secrets-and-privacy.md` | Environment variables, secrets, and publishing privacy modes |
 
 ---
 
@@ -130,14 +131,24 @@ Fast deploy:
 npm run setup:cloudflare -- --project your-report-handle
 ```
 
+Private deploy:
+
+```bash
+npm run setup:cloudflare -- --project your-report-handle --private
+```
+
 Optional environment variables:
 
 | Variable | Purpose |
 |---|---|
 | `REPORT_PASSWORD` | Enables Basic Auth |
 | `REPORT_REALM` | Browser login prompt label |
+| `CLOUDFLARE_API_TOKEN` | Lets an agent or CI deploy with Wrangler |
+| `CLOUDFLARE_ACCOUNT_ID` | Selects the right Cloudflare account |
 
-No password is required for public reports. If `REPORT_PASSWORD` is set, the whole site is protected at the Cloudflare edge.
+No password is required for public reports. If `REPORT_PASSWORD` is set as a Cloudflare Pages secret, the whole site is protected at the Cloudflare edge.
+
+For sensitive reports, use a private repo and Cloudflare Access. See [Secrets And Privacy](docs/secrets-and-privacy.md).
 
 ---
 
@@ -150,4 +161,5 @@ No password is required for public reports. If `REPORT_PASSWORD` is set, the who
 - [ ] Dates are exact where timing matters.
 - [ ] `overview.md` reflects current files.
 - [ ] `CHANGELOG.md` records substantive changes.
+- [ ] Private or sensitive material uses the right privacy mode.
 - [ ] `npm run check` passes.

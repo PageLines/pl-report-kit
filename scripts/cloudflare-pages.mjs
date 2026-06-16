@@ -2,33 +2,28 @@
 
 import { spawnSync } from 'node:child_process'
 
-const mode = process.argv[2]
-const args = process.argv.slice(3)
+import { getSecretActions, parseCloudflareArgs } from './cloudflare-pages-utils.mjs'
 
-const readArg = (names) => {
-  for (let i = 0; i < args.length; i += 1) {
-    const arg = args[i]
-    const [key, value] = arg.split('=')
-    if (names.includes(key)) {
-      return value ?? args[i + 1]
-    }
-  }
-  return ''
-}
+const options = parseCloudflareArgs({
+  argv: process.argv.slice(2),
+  env: process.env,
+})
 
-const hasFlag = (name) => args.includes(name)
+const { mode, projectName } = options
 
 const help = () => {
   console.log(`
 Usage:
-  npm run setup:cloudflare -- --project my-report [--password "secret"]
+  npm run setup:cloudflare -- --project my-report
+  npm run setup:cloudflare -- --project my-report --private
   npm run deploy -- --project my-report
 
 Options:
   --project, --handle   Cloudflare Pages project name. This becomes https://<project>.pages.dev
-  --password            Optional Basic Auth password for private reports
+  --private             Protect the report and prompt securely for REPORT_PASSWORD
   --realm               Optional browser login prompt label
   --skip-deploy         Create/configure the project without deploying
+  --password            Legacy shortcut. Prefer --private or REPORT_PASSWORD to avoid shell history.
 
 Credentials:
   Use either "npx wrangler login" or set CLOUDFLARE_API_TOKEN.
@@ -56,11 +51,7 @@ const runAllowFailure = (command, commandArgs) =>
     shell: process.platform === 'win32',
   })
 
-const projectName = readArg(['--project', '--handle']) || process.env.CLOUDFLARE_PROJECT_NAME
-const password = readArg(['--password']) || process.env.REPORT_PASSWORD
-const realm = readArg(['--realm']) || process.env.REPORT_REALM
-
-if (!mode || hasFlag('--help') || hasFlag('-h')) {
+if (options.helpRequested) {
   help()
   process.exit(mode ? 0 : 1)
 }
@@ -99,21 +90,23 @@ if (mode === 'setup') {
     }
   }
 
-  if (password) {
-    console.log('Setting REPORT_PASSWORD secret...')
-    run('npx', ['wrangler', 'pages', 'secret', 'put', 'REPORT_PASSWORD', '--project-name', projectName], {
-      input: `${password}\n`,
-    })
+  for (const action of getSecretActions(options)) {
+    if (action.warn) {
+      console.warn(`Warning: ${action.warn}`)
+    }
+
+    if (action.mode === 'interactive') {
+      console.log(`Setting ${action.name} secret. Wrangler will prompt for the value...`)
+      run('npx', ['wrangler', 'pages', 'secret', 'put', action.name, '--project-name', projectName])
+    } else {
+      console.log(`Setting ${action.name} secret...`)
+      run('npx', ['wrangler', 'pages', 'secret', 'put', action.name, '--project-name', projectName], {
+        input: `${action.value}\n`,
+      })
+    }
   }
 
-  if (realm) {
-    console.log('Setting REPORT_REALM secret...')
-    run('npx', ['wrangler', 'pages', 'secret', 'put', 'REPORT_REALM', '--project-name', projectName], {
-      input: `${realm}\n`,
-    })
-  }
-
-  if (hasFlag('--skip-deploy')) {
+  if (options.skipDeploy) {
     console.log(`Configured ${projectName}. Deploy later with: npm run deploy -- --project ${projectName}`)
     process.exit(0)
   }

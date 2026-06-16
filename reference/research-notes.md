@@ -6,16 +6,27 @@ Use this file for synthesized findings that are too detailed for the main report
 
 ## Demo Notes
 
-The default report is now intentionally meta: it uses PL Report Kit to explain why PL Report Kit is useful.
+The default report now explains why PL Report Kit exists without naming a fake product or pretending the synthetic examples are real research.
 
-This works better than a random fictional client because it lets the demo show the product's actual job:
+The demo should feel like a useful brief for the intended user:
 
-- compare reporting approaches;
-- show synthetic but clearly labeled data;
-- demonstrate a chart, table, Mermaid flow, equation, tabs, and code group;
-- explain how PageLines agents let non-technical users edit reports through natural language;
-- keep the report analytical instead of turning it into a landing page.
+- a consultant turning scattered client material into a report;
+- an operator combining interviews, metrics, and internal notes;
+- a founder preparing a strategy or diligence memo;
+- a family organizing medical records and questions for professional review;
+- a PageLines agent maintaining the report through natural-language requests.
 
-The synthetic scorecard is not evidence for a real buying decision. It is scaffolding for agents and users to see how data should be presented, labeled, and tied back to source context.
+The SPIN shape is:
+
+| SPIN Element | Demo Treatment |
+|---|---|
+| Situation | Serious reports start from messy source material |
+| Problem | Docs, PDFs, dashboards, and chat threads each lose part of the workflow |
+| Implication | Updates get expensive because context and evidence have to be rediscovered |
+| Need-payoff | A structured repo lets agents update the source trail, report, checks, and deploy |
+
+The synthetic charts are format examples, not market research. Keep them clearly labeled. For real reports, replace them with numbers from records, CSV files, interviews, or public sources.
+
+Privacy is part of the product story. The kit should make it obvious when to use public publishing, shared-password Basic Auth, or Cloudflare Access.
 
 Replace this section after adding real source material.

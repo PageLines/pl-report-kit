@@ -99,9 +99,8 @@ Use code groups for alternatives:
 npm run deploy -- --project acme-report
 ```
 
-```txt [Private]
-REPORT_PASSWORD=use-a-strong-password
-REPORT_REALM="Acme Report"
+```bash [Private]
+npm run setup:cloudflare -- --project acme-report --private
 ```
 
 :::
@@ -143,7 +142,7 @@ Use callouts for visible reader guidance.
 
 ```md
 > [!IMPORTANT]
-> This report is private until `REPORT_PASSWORD` is set and verified.
+> This report contains private material. Set `REPORT_PASSWORD` as a Cloudflare Pages secret or use Cloudflare Access before publishing.
 ```
 
 Use sparingly:
@@ -166,7 +165,10 @@ Tabs are useful for variants, not primary conclusions.
 Use for sanitized demos and public research.
 
 == Private
-Use for client work and internal reports. Set `REPORT_PASSWORD`.
+Use for client work and internal reports. Run setup with `--private`.
+
+== Sensitive
+Use for medical, legal, financial, HR, regulated, or high-trust client material. Use Cloudflare Access.
 :::
 ```
 

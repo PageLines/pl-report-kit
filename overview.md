@@ -19,7 +19,8 @@ pl-report-kit/
 ├── CHANGELOG.md           # Change history
 ├── docs/
 │   ├── ai-workflow.md     # Prompt and processing checklist
-│   └── formatting.md      # Visual formatting rules and examples
+│   ├── formatting.md      # Visual formatting rules and examples
+│   └── secrets-and-privacy.md # Env vars, secrets, and privacy modes
 ├── reference/
 │   ├── evidence-matrix.md # Extracted claims and source links
 │   ├── research-notes.md  # Synthesized notes
@@ -40,6 +41,7 @@ pl-report-kit/
 | [GUIDE.md](GUIDE.md) | Writing and source standards | Editors |
 | [docs/ai-workflow.md](docs/ai-workflow.md) | Processing checklist and reusable prompt | AI tools and editors |
 | [docs/formatting.md](docs/formatting.md) | Visual formatting rules for charts, diagrams, code, math, tabs, callouts, and media | AI tools and editors |
+| [docs/secrets-and-privacy.md](docs/secrets-and-privacy.md) | Environment variables, Cloudflare secrets, Basic Auth, Access, and sensitive-report rules | AI tools and editors |
 | [reference/evidence-matrix.md](reference/evidence-matrix.md) | Claim-to-source table | Reviewers |
 | [records/](records/) | Source document workspace | Editors and agents |
 
@@ -52,6 +54,7 @@ pl-report-kit/
 3. Read this file.
 4. Read `index.md`.
 5. Read `docs/formatting.md` before adding visuals.
-6. Check `CHANGELOG.md`.
-7. Inspect `records/` and `reference/` for the task.
-8. Update `overview.md` and `CHANGELOG.md` after substantive changes.
+6. Read `docs/secrets-and-privacy.md` before deployment or private-data handling.
+7. Check `CHANGELOG.md`.
+8. Inspect `records/` and `reference/` for the task.
+9. Update `overview.md` and `CHANGELOG.md` after substantive changes.

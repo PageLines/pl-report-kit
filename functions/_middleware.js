@@ -1,9 +1,16 @@
 // Cloudflare Pages Function: optional edge HTTP Basic Auth over the entire site.
 //
-// Public reports deploy without environment setup. Set REPORT_PASSWORD in
-// Cloudflare Pages environment variables to protect the whole site.
+// Public reports deploy without environment setup. Set REPORT_PASSWORD as a
+// Cloudflare Pages secret to protect the whole site.
 
 const DEFAULT_REALM = 'Private report'
+
+export const formatRealm = (realm = DEFAULT_REALM) =>
+  String(realm || DEFAULT_REALM)
+    .replace(/["\\]/g, '')
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim() || DEFAULT_REALM
 
 export const getBasicAuthPassword = (header) => {
   const [scheme, encoded] = (header || '').split(' ')
@@ -53,7 +60,7 @@ export const onRequest = async (context) => {
   return new Response('Authentication required.', {
     status: 401,
     headers: {
-      'WWW-Authenticate': `Basic realm="${REALM}", charset="UTF-8"`,
+      'WWW-Authenticate': `Basic realm="${formatRealm(realm)}", charset="UTF-8"`,
       'Cache-Control': 'no-store',
     },
   })
