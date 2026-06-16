@@ -48,6 +48,19 @@ test('buildChartOptions returns report defaults with unit-aware tooltip text', (
   assert.equal(label, 'Median delay: 46 hours')
 })
 
+test('buildChartOptions applies theme colors to chart text and grid lines', () => {
+  const options = buildChartOptions({
+    title: 'Theme-aware report chart',
+    textColor: '#f8fafc',
+    gridColor: 'rgba(248, 250, 252, 0.18)',
+  })
+
+  assert.equal(options.plugins.title.color, '#f8fafc')
+  assert.equal(options.scales.x.ticks.color, '#f8fafc')
+  assert.equal(options.scales.y.ticks.color, '#f8fafc')
+  assert.equal(options.scales.y.grid.color, 'rgba(248, 250, 252, 0.18)')
+})
+
 test('buildChartOptions uses composition defaults for doughnut charts', () => {
   const options = buildChartOptions({
     title: 'Client mix',

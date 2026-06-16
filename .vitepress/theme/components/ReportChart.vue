@@ -52,6 +52,7 @@ const props = defineProps({
 const canvas = ref(null)
 let chart
 let ChartConstructor
+let themeObserver
 
 const chartData = computed(() =>
   buildChartDataset({
@@ -63,15 +64,28 @@ const chartData = computed(() =>
   }),
 )
 
-const chartOptions = computed(() =>
+const cssVar = (name, fallback) => {
+  if (typeof window === 'undefined')
+    return fallback
+
+  const value = window.getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return value || fallback
+}
+
+const currentChartTheme = () => ({
+  textColor: cssVar('--vp-c-text-1', '#334155'),
+  gridColor: cssVar('--vp-c-divider', 'rgba(100, 116, 139, 0.18)'),
+})
+
+const getChartOptions = () =>
   buildChartOptions({
     type: props.type,
     title: props.title,
     unit: props.unit,
     horizontal: props.horizontal,
     stacked: props.stacked,
-  }),
-)
+    ...currentChartTheme(),
+  })
 
 const chartAreaStyle = computed(() => ({
   height: `${Math.max(props.height, 220)}px`,
@@ -90,11 +104,19 @@ async function renderChart() {
   chart = new ChartConstructor(canvas.value, {
     type: props.type,
     data: chartData.value,
-    options: chartOptions.value,
+    options: getChartOptions(),
   })
 }
 
 onMounted(renderChart)
+
+onMounted(() => {
+  themeObserver = new MutationObserver(renderChart)
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class', 'style'],
+  })
+})
 
 watch(
   () => [
@@ -113,6 +135,7 @@ watch(
 )
 
 onBeforeUnmount(() => {
+  themeObserver?.disconnect()
   chart?.destroy()
 })
 </script>
@@ -142,7 +165,7 @@ onBeforeUnmount(() => {
 .report-chart__description {
   max-width: 720px;
   margin: 0 0 10px;
-  color: var(--vp-c-text-2);
+  color: var(--vp-c-text-1);
   font-size: 13px;
   line-height: 1.45;
 }

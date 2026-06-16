@@ -61,6 +61,8 @@ export function buildChartOptions({
   unit = '',
   horizontal = false,
   stacked = false,
+  textColor = defaultTextColor,
+  gridColor = defaultGridColor,
 } = {}) {
   const isCompositionChart = ['doughnut', 'pie', 'polarArea'].includes(type)
   const basePlugins = {
@@ -68,7 +70,7 @@ export function buildChartOptions({
       display: Boolean(title),
       text: title,
       align: 'start',
-      color: defaultTextColor,
+      color: textColor,
       font: {
         family: 'Inter, ui-sans-serif, system-ui, sans-serif',
         size: 15,
@@ -82,7 +84,7 @@ export function buildChartOptions({
       display: isCompositionChart,
       position: 'bottom',
       labels: {
-        color: defaultTextColor,
+        color: textColor,
         boxWidth: 12,
         boxHeight: 12,
         padding: 16,
@@ -135,7 +137,7 @@ export function buildChartOptions({
           display: false,
         },
         ticks: {
-          color: defaultTextColor,
+          color: textColor,
           font: {
             family: 'Inter, ui-sans-serif, system-ui, sans-serif',
           },
@@ -145,10 +147,10 @@ export function buildChartOptions({
         stacked,
         beginAtZero: true,
         grid: {
-          color: defaultGridColor,
+          color: gridColor,
         },
         ticks: {
-          color: defaultTextColor,
+          color: textColor,
           font: {
             family: 'Inter, ui-sans-serif, system-ui, sans-serif',
           },

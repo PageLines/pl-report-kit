@@ -21,6 +21,7 @@ All notable changes to this report should be documented here.
 
 ### Fixed
 
+- Fixed `ReportChart` text contrast in dark mode by reading VitePress theme colors before drawing canvas labels, titles, legends, and grid lines.
 - Fixed the Basic Auth middleware challenge path so configured private reports return a valid `WWW-Authenticate` header instead of throwing on missing auth.
 
 ## June 15, 2026
